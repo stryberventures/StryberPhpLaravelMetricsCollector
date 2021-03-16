@@ -28,7 +28,7 @@ final class RequestMetric extends Metric
 
     public function getName(): string
     {
-        return 'request';
+        return 'http-request';
     }
 
     public function getDuration(): float

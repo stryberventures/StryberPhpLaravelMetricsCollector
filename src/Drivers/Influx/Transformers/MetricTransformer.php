@@ -27,6 +27,7 @@ abstract class MetricTransformer implements Transformer
     private function makePoint(): Point
     {
         return Point::measurement($this->metric->getName())
-            ->addTag('id', $this->metric->getId()->toString());
+            ->addTag('id', $this->metric->getId()->toString())
+            ->time($this->metric->getCreatedAt()->format('Uu'));
     }
 }

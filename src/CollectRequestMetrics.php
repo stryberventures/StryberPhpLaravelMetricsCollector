@@ -13,15 +13,15 @@ use Stryber\Uuid\UuidGenerator;
 
 final class CollectRequestMetrics
 {
+    private TimeControl $timeControl;
     private Collector $collector;
     private UuidGenerator $uuidGenerator;
-    private float $fallbackTime;
 
-    public function __construct(Collector $collector, UuidGenerator $uuidGenerator)
+    public function __construct(TimeControl $timeControl, Collector $collector, UuidGenerator $uuidGenerator)
     {
+        $this->timeControl = $timeControl;
         $this->collector = $collector;
         $this->uuidGenerator = $uuidGenerator;
-        $this->fallbackTime = microtime(true);
     }
 
     public function handle(Request $request, Closure $next)
@@ -32,13 +32,10 @@ final class CollectRequestMetrics
     public function terminate(Request $request, Response $response): void
     {
         $terminatedAt = new DateTimeImmutable();
-        $startedAt = defined('LARAVEL_START') ?
-            LARAVEL_START :
-            (float)$request->server('REQUEST_TIME_FLOAT', $this->fallbackTime);
         $metric = new RequestMetric(
             $this->uuidGenerator->generate(),
             $terminatedAt,
-            (float)$terminatedAt->format('U') - $startedAt,
+            $this->timeControl->sinceStartTo($terminatedAt),
             $request->path(),
             $request->ip()
         );

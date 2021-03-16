@@ -17,10 +17,10 @@ final class DriverManager extends Manager
         return $this->config->get('stryber-metrics.default');
     }
 
-    private function createInfluxdbDriver(): InfluxDriver
+    public function createInfluxDriver(): InfluxDriver
     {
         return new InfluxDriver(
-            new Client($this->config->get('stryber-metrics.drivers.influxdb')),
+            new Client($this->config->get('stryber-metrics.drivers.influx.client')),
             $this->container->get(TransformersFactory::class),
             $this->container->get(LoggerInterface::class)
         );

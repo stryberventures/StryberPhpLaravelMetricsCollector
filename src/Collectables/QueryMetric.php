@@ -39,7 +39,7 @@ final class QueryMetric extends Metric
 
     public function getName(): string
     {
-        return 'db-query';
+        return 'sql-query';
     }
 
     public function getDuration(): float

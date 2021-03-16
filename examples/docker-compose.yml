@@ -1,0 +1,15 @@
+version: "3.8"
+networks:
+  web-network:
+    driver: 'bridge'
+volumes:
+  influx:
+services:
+  influx:
+    image: quay.io/influxdb/influxdb:v2.0.4
+      volumes:
+        - "influx:/root/.influxdbv2"
+      networks:
+        - web-network
+      ports:
+        - "8086:8086"

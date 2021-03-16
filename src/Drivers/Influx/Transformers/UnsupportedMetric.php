@@ -11,6 +11,7 @@ final class UnsupportedMetric extends InvalidArgumentException
 {
     public static function fromMetric(Metric $metric): self
     {
-        return new self("Can't find transformer for metric: {$metric->getName()}, {$metric::class}");
+        $metricClass = $metric::class;
+        return new self("Can't find transformer for metric: {$metric->getName()}, {$metricClass}");
     }
 }

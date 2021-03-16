@@ -16,8 +16,7 @@ final class RequestMetricTransformer extends MetricTransformer
 
     protected function populateFields(Point $point): Point
     {
-        return $point->addField('created_at', $this->metric->getCreatedAt()->format('U'))
-            ->addField('duration', $this->metric->getDuration())
+        return $point->addField('duration', $this->metric->getDuration())
             ->addTag('endpoint', $this->metric->getEndpoint())
             ->addField('ip', $this->metric->getIp());
     }

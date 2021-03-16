@@ -9,7 +9,7 @@ use Ramsey\Uuid\UuidInterface;
 
 final class CommandMetric extends Metric
 {
-    private float $executionTime;
+    private float $duration;
     private string $command;
 
     public function __construct(
@@ -19,18 +19,18 @@ final class CommandMetric extends Metric
         string $command
     ) {
         parent::__construct($id, $created_at);
-        $this->executionTime = $duration;
+        $this->duration = $duration;
         $this->command = $command;
     }
 
     public function getName(): string
     {
-        return 'command';
+        return 'cli-command';
     }
 
-    public function getExecutionTime(): float
+    public function getDuration(): float
     {
-        return $this->executionTime;
+        return $this->duration;
     }
 
     public function getCommand(): string

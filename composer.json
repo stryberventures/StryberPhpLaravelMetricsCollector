@@ -14,13 +14,15 @@
     "illuminate/contracts": "^8.0",
     "illuminate/support": "^8.0",
     "illuminate/database": "^8.0",
-    "illuminate/http": "^8.0",
+    "illuminate/http": "^8.33",
     "influxdata/influxdb-client-php": "^1.10",
     "ramsey/uuid": "^4.1",
-    "stryber/laravel-uuid-helper": "^8.0"
+    "stryber/laravel-uuid-helper": "^8.0",
+    "illuminate/console": "^8.32"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-master"
+    "roave/security-advisories": "dev-master",
+    "vimeo/psalm": "^4.6"
   },
   "autoload": {
     "psr-4": {
